@@ -1,11 +1,32 @@
-defaultTasks "clean", "build"
+/*@Grapes([
+    @Grab(group='org.spiffyui', module='spiffyuitasks', version='0.7.6'),
+    @GrabConfig(systemClassLoader=true, initContextClassLoader=true),
+])
+
+import org.spiffyui.build.HTMLPropertiesUtil*/
+
+import groovy.grape.Grape
+
+defaultTasks "clean", "htmlProps", "build", "jettyRunWar"
 
 buildscript {
+
+    /*
+     * Change this location to point to your GWT plugin build libs directory
+     */
     repositories { flatDir(dirs: "../../../tmp/gwt-gradle-plugin/build/libs/") }
     dependencies { classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1-SNAPSHOT' }
 }
 
-apply plugin: 'groovy'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'org.spiffyui', name: 'spiffyuitasks', version: '0.7.6'
+    }
+}
+
 apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: com.markuskobler.gradle.plugin.gwt.Gwt2Plugin
@@ -18,10 +39,13 @@ repositories {
 }
 
 dependencies {
+//    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.9'
+    //groovy group: 'org.apache.ivy', name:'ivy', version:'2.2.0'
     providedCompile 'javax.servlet:servlet-api:2.5'
     compile 'org.spiffyui:spiffyui:0.7.6'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA', classifier: 'sources'
+    compile files('build/gen');
 }
 
 gwtVersion = '2.3.0'
@@ -29,3 +53,26 @@ gwtModule = 'org.spiffyui.hellospiffygradle.index'
 gwtStartupUrl = 'index.html'
 
 jettyRunWar.contextPath = '/'
+
+task htmlProps << {
+    
+    FileTree tree = fileTree(dir: 'src/main/html')
+    tree.include '**/*.html'
+    
+    List<File> files = new ArrayList<File>();
+    tree.each {File file ->
+        files.add(file)
+    }   
+    
+    println 'files: ' + files
+    
+    File gen = new File('build/gen/org/spiffyui/hellospiffygradle/client')
+    gen.mkdirs();
+    
+    String pkg = 'org.spiffyui.hellospiffygradle.client'
+    
+    org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(files, new File(gen, 'SpiffyUiHtml.properties'), pkg);
+}
+
+
+//org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(null, null, null);

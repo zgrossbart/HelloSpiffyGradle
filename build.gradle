@@ -1,0 +1,28 @@
+defaultTasks "clean", "build"
+
+buildscript {
+    repositories { flatDir(dirs: "../../../tmp/gwt-gradle-plugin/build/libs/") }
+    dependencies { classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1-SNAPSHOT' }
+}
+
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: com.markuskobler.gradle.plugin.gwt.Gwt2Plugin
+
+group = 'HelloSpiffyGradle'
+version = '0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'org.spiffyui:spiffyui:0.7.6'
+    compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
+    compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA', classifier: 'sources'
+}
+
+gwtVersion = '2.3.0'
+gwtModule = 'org.spiffyui.hellospiffygradle.index'
+gwtStartupUrl = 'index.html'

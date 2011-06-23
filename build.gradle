@@ -18,11 +18,8 @@ repositories {
 }
 
 dependencies {
-//    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.6'
-//    groovy group: 'org.apache.ivy', name:'ivy', version:'2.2.0'
     providedCompile 'javax.servlet:servlet-api:2.5'
     compile 'org.spiffyui:spiffyui:0.7.6'
-    groovy 'org.spiffyui:spiffyuitasks:0.7.6'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA', classifier: 'sources'
 }
@@ -32,5 +29,3 @@ gwtModule = 'org.spiffyui.hellospiffygradle.index'
 gwtStartupUrl = 'index.html'
 
 jettyRunWar.contextPath = '/'
-
-//org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(null, null, null);

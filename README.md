@@ -11,8 +11,7 @@ Hello Spiffy Gradle is built with [Gradle](http://www.gradle.org/).  Once you've
 
 After you've built the plugin you can build and run Hello Spiffy Gradle by going to your HelloSpiffyGradle working copy and running these commands:
 
-        <GRADLE HOME>/gradle
-        <GRADLE HOME>/gradle jettyRunWar
+        <GRADLE HOME>/gradle build jettyRunWar
         
 This will download the project dependencies, build the Hello Spiffy Gradle project, and run it with an embedded Jetty web server.  You can access the running application at:
 

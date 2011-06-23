@@ -21,6 +21,8 @@ buildscript {
     }
 }
 
+import org.spiffyui.build.HTMLPropertiesUtil
+
 apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: com.markuskobler.gradle.plugin.gwt.Gwt2Plugin
@@ -72,7 +74,7 @@ task htmlProps << {
     
     String pkg = 'org.spiffyui.hellospiffygradle.client'
     
-    org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(files, new File(gen, 'SpiffyUiHtml.properties'), pkg);
+    HTMLPropertiesUtil.generatePropertiesFiles(files, new File(gen, 'SpiffyUiHtml.properties'), pkg);
 }
 
 /*
@@ -87,11 +89,13 @@ war {
  * We print out some server instructions
  */
 task serverInstructions << {
-    println '========================================================================'
-    println '    Running the Spiffy UI application with an embedded'
-    println '    Jetty server. Press Ctrl+C to stop the server. '
-    println ''
-    println '    Access Hello Spiffy Gradle at: http://localhost:8080'
-    println '========================================================================'
+    println '''
+========================================================================
+    Running the Spiffy UI application with an embedded
+    Jetty server. Press Ctrl+C to stop the server. 
+    
+    Access Hello Spiffy Gradle at: http://localhost:8080
+========================================================================
+'''
         
 }

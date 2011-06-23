@@ -25,6 +25,9 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: com.markuskobler.gradle.plugin.gwt.Gwt2Plugin
 
+/*
+ * Now we define our application
+ */
 group = 'HelloSpiffyGradle'
 version = '0.1-SNAPSHOT'
 
@@ -32,22 +35,28 @@ repositories {
     mavenCentral()
 }
 
+/*
+ * We specify our dependencies
+ */
 dependencies {
-//    groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.9'
-    //groovy group: 'org.apache.ivy', name:'ivy', version:'2.2.0'
     providedCompile 'javax.servlet:servlet-api:2.5'
-    compile 'org.spiffyui:spiffyui:0.7.6'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA', classifier: 'sources'
+    compile 'org.spiffyui:spiffyui:0.7.6'
     compile files('build/gen');
 }
 
+/*
+ * We define our GWT module
+ */
 gwtVersion = '2.3.0'
 gwtModule = 'org.spiffyui.hellospiffygradle.index'
 gwtStartupUrl = 'index.html'
-
 jettyRunWar.contextPath = '/'
 
+/*
+ * We generate the Message class from our HTML files
+ */
 task htmlProps << {
     
     FileTree tree = fileTree(dir: 'src/main/html')
@@ -66,6 +75,17 @@ task htmlProps << {
     org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(files, new File(gen, 'SpiffyUiHtml.properties'), pkg);
 }
 
+/*
+ * We add our JavaScript files to the root of our WAR so we can find them
+ * for localization support.
+ */
+war {
+    from 'build/gwt/out/org.spiffyui.hellospiffygradle.index/js/'
+}
+
+/*
+ * We print out some server instructions
+ */
 task serverInstructions << {
     println '========================================================================'
     println '    Running the Spiffy UI application with an embedded'

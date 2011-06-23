@@ -99,6 +99,7 @@ public class Index implements EntryPoint, ClickHandler, KeyPressHandler
          These dynamic controls add interactivity to our page.
          */
         panel.add(m_longMessage, "longMsg");
+        m_text.getElement().setAttribute("autoFocus", "");
         panel.add(m_text, "nameField");
         final Button button = new Button("Submit");
         panel.add(button, "submitButton");

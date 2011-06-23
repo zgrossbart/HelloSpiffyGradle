@@ -16,7 +16,7 @@ After you've built the plugin you can build and run Hello Spiffy Gradle by going
         
 This will download the project dependencies, build the Hello Spiffy Gradle project, and run it with an embedded Jetty web server.  You can access the running application at:
 
-        http://localhost:8080/HelloSpiffyGradle
+        http://localhost:8080
 
 License
 --------------------------------------

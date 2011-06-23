@@ -1,13 +1,4 @@
-/*@Grapes([
-    @Grab(group='org.spiffyui', module='spiffyuitasks', version='0.7.6'),
-    @GrabConfig(systemClassLoader=true, initContextClassLoader=true),
-])
-
-import org.spiffyui.build.HTMLPropertiesUtil*/
-
-import groovy.grape.Grape
-
-defaultTasks "clean", "htmlProps", "build", "jettyRunWar"
+defaultTasks "clean", "htmlProps", "build", "serverInstructions", "jettyRunWar"
 
 buildscript {
 
@@ -19,6 +10,9 @@ buildscript {
 }
 
 buildscript {
+    /*
+     * This pulls in the Spiffy UI build tasks which are used only for compilation
+     */
     repositories {
         mavenCentral()
     }
@@ -64,8 +58,6 @@ task htmlProps << {
         files.add(file)
     }   
     
-    println 'files: ' + files
-    
     File gen = new File('build/gen/org/spiffyui/hellospiffygradle/client')
     gen.mkdirs();
     
@@ -74,5 +66,12 @@ task htmlProps << {
     org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(files, new File(gen, 'SpiffyUiHtml.properties'), pkg);
 }
 
-
-//org.spiffyui.build.HTMLPropertiesUtil.generatePropertiesFiles(null, null, null);
+task serverInstructions << {
+    println '========================================================================'
+    println '    Running the Spiffy UI application with an embedded'
+    println '    Jetty server. Press Ctrl+C to stop the server. '
+    println ''
+    println '    Access Hello Spiffy Gradle at: http://localhost:8080'
+    println '========================================================================'
+        
+}

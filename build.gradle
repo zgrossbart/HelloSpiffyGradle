@@ -5,7 +5,7 @@ buildscript {
     /*
      * Change this location to point to your GWT plugin build libs directory
      */
-    repositories { flatDir(dirs: "../../../tmp/gwt-gradle-plugin/build/libs/") }
+    repositories { flatDir(dirs: "../gwt-gradle-plugin/build/libs/") }
     dependencies { classpath 'com.markuskobler.gradle:gwt-gradle-plugin:0.1-SNAPSHOT' }
 }
 

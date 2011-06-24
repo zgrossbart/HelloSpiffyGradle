@@ -17,6 +17,8 @@ This will download the project dependencies, build the Hello Spiffy Gradle proje
 
         http://localhost:8080
 
+This project is a good example of calling Java from Gradle with dynamic loading and how we can reuse the Spiffy UI build utilities in many build systems.
+
 License
 --------------------------------------
 

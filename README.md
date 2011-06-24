@@ -7,7 +7,7 @@ Hello Spiffy Gradle is a sample application using the [Spiffy UI Framework](http
 Building and Running Spiffy UI
 --------------------------------------
 
-Hello Spiffy Gradle is built with [Gradle](http://www.gradle.org/).  Once you've installed Gradle you must also get and build the [Gradle GWT plugin](https://github.com/markuskobler/gwt-gradle-plugin).  Build this plugin and then change the build.grandle file in the Hello Spiffy Gradle to point to the location of your built files.
+Hello Spiffy Gradle is built with [Gradle](http://www.gradle.org/).  Once you've installed Gradle you must also get and build the [Gradle GWT plugin](https://github.com/markuskobler/gwt-gradle-plugin).  Build this plugin and then change the build.gradle file in the Hello Spiffy Gradle to point to the location of your built files.
 
 After you've built the plugin you can build and run Hello Spiffy Gradle by going to your HelloSpiffyGradle working copy and running these commands:
 

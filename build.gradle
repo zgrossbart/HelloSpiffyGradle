@@ -17,7 +17,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'org.spiffyui', name: 'spiffyuitasks', version: '0.7.6'
+        classpath group: 'org.spiffyui', name: 'spiffyuitasks', version: '0.7.9'
     }
 }
 
@@ -44,14 +44,14 @@ dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
     compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA', classifier: 'sources'
-    compile 'org.spiffyui:spiffyui:0.7.6'
+    compile 'org.spiffyui:spiffyui:0.7.9'
     compile files('build/gen');
 }
 
 /*
  * We define our GWT module
  */
-gwtVersion = '2.3.0'
+gwtVersion = '2.4.0'
 gwtModule = 'org.spiffyui.hellospiffygradle.index'
 gwtStartupUrl = 'index.html'
 jettyRunWar.contextPath = '/'
